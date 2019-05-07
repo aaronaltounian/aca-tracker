@@ -7,6 +7,8 @@ app.use( bodyParser.urlencoded( {extended: true} ) );
 
 app.listen( 8080, console.log('Listening on 8080') );
 
+const fetch = require('node-fetch');
+
 let lastClientId = 0;
 let clients = [];
 
@@ -29,5 +31,15 @@ app.get('/clients', ( req, res ) => {
 })
 
 app.post('/locations', ( req, res ) => {
-    
+    fetch('http://nominatim.openstreetmap.org/reverse?format=json&lat=30.2689161&lon=-97.740671999999997&zoom=18&addressdetails=1', 
+        { 
+            method: 'GET', 
+            headers: {
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
+        }
+    })
+    .then(res => res.json())
+    .then(json => {
+        console.log(json)
+    });
 })

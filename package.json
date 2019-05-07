@@ -18,6 +18,7 @@
   "homepage": "https://github.com/aaronaltounian/aca-tracker#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "node-fetch": "^2.5.0"
   }
 }
