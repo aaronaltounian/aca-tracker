@@ -31,7 +31,11 @@ app.get('/clients', ( req, res ) => {
 })
 
 app.post('/locations', ( req, res ) => {
-    fetch('http://nominatim.openstreetmap.org/reverse?format=json&lat=30.2689161&lon=-97.740671999999997&zoom=18&addressdetails=1', 
+    let lat = req.body.lat;
+    let long = req.body.long;
+    let id = res.body.id;
+    let client = clients.find( c => c.id === Number(id))
+    fetch(`http://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}&zoom=18&addressdetails=1`, 
         { 
             method: 'GET', 
             headers: {
@@ -41,5 +45,6 @@ app.post('/locations', ( req, res ) => {
     .then(res => res.json())
     .then(json => {
         console.log(json)
+        
     });
 })
